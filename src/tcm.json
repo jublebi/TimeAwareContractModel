@@ -1,0 +1,91 @@
+{
+  "Parties": [
+    {
+      "Name":  "A",
+      "Role": "Worker"
+    },
+    {
+      "Name":  "B",
+      "Role": "Supplier"
+    },
+    {
+      "Name":  "ex",
+      "Role": "external"
+    }
+  ],
+  "Nodes" : [
+    {
+      "Name": "Start",
+      "type": "start",
+      "time": 0
+    },
+    {
+      "Name": "Ordered",
+      "type": "event",
+      "controlledBy": "A",
+      "i": "nc"
+    },
+    {
+      "Name": "Delivered",
+      "type": "event",
+      "controlledBy": "B",
+      "i": "c"
+    },
+    {
+      "Name": "Work Start",
+      "type": "event",
+      "controlledBy": "A",
+      "i": "nc"
+    },
+    {
+      "Name": "Work End",
+      "type": "event",
+      "controlledBy": "A",
+      "i": "nc"
+    },
+    {
+      "Name": "End",
+      "type": "end"
+    }
+  ],
+  "Edges": [
+    {
+      "from": "Start",
+      "to": "Ordered"
+    },
+    {
+      "from": "Ordered",
+      "to": "Delivered"
+    },
+    {
+      "from": "Delivered",
+      "to": "Work Start"
+    },
+    {
+      "from": "Work Start",
+      "to": "Work End"
+    },
+    {
+      "from": "Work End",
+      "to": "End"
+    }
+  ],
+  "Constraints": [
+    {
+      "name": "Deliver Order",
+      "from": "Ordered",
+      "to": "Delivered",
+      "controlledBy": "B",
+      "lowerBoundary": 3,
+      "upperBoundary": 5
+    },
+    {
+      "name": "Deliver Order",
+      "from": "Ordered",
+      "to": "Delivered",
+      "controlledBy": "B",
+      "lowerBoundary": 3,
+      "upperBoundary": 5
+    }
+  ]
+}
